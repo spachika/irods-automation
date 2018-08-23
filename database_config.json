@@ -1,0 +1,45 @@
+{
+
+    "id": "file:///var/lib/irods/configuration_schemas/v3/database_config.json",
+
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties": {
+
+        "db_host": "localhost",
+
+        "db_name": "ICAT",
+
+        "db_password": "abc123",
+
+        "db_port": 5432,
+
+        "db_username": "irods",
+
+        "db_sslmode": {"type": "string"},
+
+        "db_sslrootcert": {"type": "string"},
+
+        "db_sslcert": {"type": "string"},
+
+        "db_sslkey": {"type": "string"}
+
+    },
+
+    "required": [
+
+        "db_host",
+
+        "db_name",
+
+        "db_password",
+
+        "db_port",
+
+        "db_username"
+
+    ]
+
+}

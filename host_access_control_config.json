@@ -1,0 +1,41 @@
+{
+
+    "id": "file:///var/lib/irods/configuration_schemas/v3/host_access_control_config.json",
+
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "properties": {
+
+        "access_entries": {
+
+            "type": "array",
+
+            "items": {
+
+                "type": "object",
+
+                "properties": {
+
+                    "user": "All",
+
+                    "group": "All",
+
+                    "address": "127.0.0.1",
+
+                    "mask": "255.255.255.255"
+
+                },
+
+                "required": ["user","group","address","mask"]
+
+            }
+
+        }
+
+    },
+
+    "required": ["access_entries"]
+
+}

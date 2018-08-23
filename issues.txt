@@ -1,0 +1,23 @@
+Block1:
+Ansible ping to ubuntu 16 AMI failed
+Cause:
+Python is by default not available in ubuntu 16 AMI.
+ansible is pull based and python is mandatory to connect with nodes.
+Resolution:
+connected to ubuntu remote using SSH and installed python
+
+Block2:
+creation of DB in postgresSQL engine using ansible playbooks
+Cause:
+psycopg2 module is required for python to execute sql on postgresSQL
+Resolution:
+Installed python-pip from apt repository. It is required for installing python modules
+
+Block3:
+execution of setup_irods.py using ansible playbook failed
+Cause:
+setup_irods.py is a interactive script. Ansible checks only task completion like yes or no
+but cannot run interactive script
+Resolution:
+Identified that json file can be passed to setup_irods.py. Tried to edit the json file but
+am not that good at json. So configured irods manually
