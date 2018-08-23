@@ -1,0 +1,23 @@
+---
+- name: install iRODS application
+  hosts: iRODSAPPDB
+  become: true
+  become_user: root
+  tasks:
+  - name: add public key of iRODS repo
+    apt_key:
+      url: https://packages.irods.org/irods-signing-key.asc 
+      state: present
+  - name: create repo file
+    shell: echo "deb [arch=amd64] https://packages.irods.org/apt/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/renci-irods.list
+  - name: update apt cahce
+    apt:
+      update_cache: yes
+  - name: install irods server and postgresqql plugin
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - irods-server
+      - irods-database-plugin-postgres
+

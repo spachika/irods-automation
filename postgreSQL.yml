@@ -1,0 +1,40 @@
+---
+- name: install postgreSQL database and config
+  hosts: iRODSAPPDB
+  become: yes
+  become_user: root
+  tasks:
+    - name: Install pip to install python modules
+      apt:
+         name: python-pip
+         state: present
+    - name: Install postgreSQL database
+      apt: 
+         name: postgresql
+         state: present
+    - name: install psycopg2 for python+postgreSQL library
+      pip:
+         name: psycopg2
+         state: present   
+    - name: create database ICAT
+      postgresql_db: 
+         name: ICAT 
+         state: present
+      become: yes
+      become_user: postgres
+    - name: database user irods
+      postgresql_user: 
+         user: irods 
+         password: abc123
+         state: present
+      become: yes
+      become_user: postgres
+    - name: Grant Privilges to irods on ICAT db    
+      postgresql_privs:
+         db: ICAT
+         privs: ALL
+         type: database
+         role: irods
+      become: yes
+      become_user: postgres
+
